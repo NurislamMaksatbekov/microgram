@@ -7,7 +7,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+    public class User {
+
     private int id;
     private String name;
     private String userName;

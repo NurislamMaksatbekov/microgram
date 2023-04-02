@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
+
     private int id;
     private String image;
     private String description;

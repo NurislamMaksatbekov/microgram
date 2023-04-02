@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment {
+
     private int id;
     private String textOfComment;
     private Integer timeOfComment;
