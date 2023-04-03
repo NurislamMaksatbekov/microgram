@@ -34,8 +34,8 @@ public class LikeDao {
         jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 ps.setInt(1, likes.get(i).getTimeOfLike());
-                ps.setLong(2, likes.get(i).getUser());
-                ps.setLong(3, likes.get(i).getPost());
+                ps.setLong(2, likes.get(i).getUserId());
+                ps.setLong(3, likes.get(i).getPostId());
             }
 
             public int getBatchSize() {

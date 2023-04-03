@@ -13,8 +13,8 @@ import java.util.Random;
 public class Like {
 
     private Long id;
-    private Long user;
-    private Long post;
+    private Long userId;
+    private Long postId;
     private Integer timeOfLike;
 
     public static Like random(){
@@ -23,8 +23,8 @@ public class Like {
         Long userId = Long.valueOf(rnd);
         Long postId = Long.valueOf(r);
         return builder()
-                .user(userId)
-                .post(postId)
+                .userId(userId)
+                .postId(postId)
                 .timeOfLike(Generator.makeYear())
                 .build();
 

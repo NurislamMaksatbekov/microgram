@@ -15,8 +15,8 @@ public class Comment {
     private Long id;
     private String textOfComment;
     private Integer timeOfComment;
-    private Long user;
-    private Long post;
+    private Long userId;
+    private Long postId;
 
     public static Comment random(){
         Integer rnd = new Random().nextInt(29) + 1;
@@ -26,8 +26,8 @@ public class Comment {
         return builder()
                 .textOfComment(Generator.makeDescription())
                 .timeOfComment(Generator.makeYear())
-                .user(userId)
-                .post(postId)
+                .userId(userId)
+                .postId(postId)
                 .build();
     }
 

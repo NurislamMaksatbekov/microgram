@@ -16,8 +16,6 @@ public class Post {
     private String image;
     private String description;
     private Integer timeOfPublication;
-
-    @JsonProperty("user_id")
     private Long userId;
 
     public static Post random(){

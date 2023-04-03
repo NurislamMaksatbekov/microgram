@@ -34,8 +34,8 @@ public class CommentDao {
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 ps.setString(1, comments.get(i).getTextOfComment());
                 ps.setInt(2, comments.get(i).getTimeOfComment());
-                ps.setLong(3, comments.get(i).getUser());
-                ps.setLong(4, comments.get(i).getPost());
+                ps.setLong(3, comments.get(i).getUserId());
+                ps.setLong(4, comments.get(i).getPostId());
             }
 
             @Override
