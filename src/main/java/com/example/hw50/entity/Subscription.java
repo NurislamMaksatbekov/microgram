@@ -28,5 +28,4 @@ public class Subscription {
                 .timeOfEvent(Generator.makeYear())
                 .build();
     }
-
 }

@@ -5,6 +5,7 @@ import com.example.hw50.service.LikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
@@ -15,7 +16,7 @@ public class LikeController {
     private final LikeService likeService;
 
     @GetMapping("/isliked")
-    public Optional<Like> isLiked(@RequestBody Long userId, Long postId){
+    public Optional<Like> isLiked(@RequestParam Long userId, Long postId){
         return likeService.isLiked(userId, postId);
     }
 }
