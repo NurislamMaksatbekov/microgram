@@ -49,10 +49,11 @@ function changeUserStatus(user) {
     user.checkUser = true;
 }
 
-function checkPostLikedStatus(postId) {
+function changePostLikedStatus(postId) {
     const post = posts.find(post => post.id === postId);
     if (post) {
-        post.likes = post.likes ? 0 : 1;
+        post.likes = post.likes ? 0 : 1; // функция changePostLikedStatus ищет id поста в массиве posts и изменяет likes
+        // если likes = 0 он меняет его значение на 1 или наоборотю
     }
 
 }
