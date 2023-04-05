@@ -45,9 +45,8 @@ public class PostDao {
     }
 
     public List<Post> selectPost(Long id){
-        String sql = "select p.id" +
+        String sql = "select *" +
                 " from post p" +
-                " inner join usr u on p.user_id = u.id" +
                 " where user_id = ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Post.class), id);
     }

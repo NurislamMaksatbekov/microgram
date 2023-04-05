@@ -1,7 +1,6 @@
 package com.example.hw50.entity;
 
 import com.example.hw50.util.Generator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.Random;

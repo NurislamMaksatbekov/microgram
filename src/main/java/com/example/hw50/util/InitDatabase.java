@@ -2,9 +2,11 @@ package com.example.hw50.util;
 
 import com.example.hw50.dao.*;
 import com.example.hw50.entity.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -12,6 +14,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 @Configuration
+@RequiredArgsConstructor
 public class InitDatabase {
 
     @Bean
@@ -42,6 +45,7 @@ public class InitDatabase {
                     .limit(30)
                     .collect(toList());
             likeDao.saveAll(likes);
+
             List<Comment> comments = Stream.generate(Comment::random)
                     .limit(30)
                     .collect(toList());

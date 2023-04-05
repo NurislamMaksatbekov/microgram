@@ -45,8 +45,8 @@ public class LikeDao {
     }
 
     public Optional<Like> isLiked(Long userId, Long postId){
-        String sql = "select l.id  " +
-                "from liked_post l " +
+        String sql = "select *  " +
+                "from liked_post  " +
                 "where user_id = ? " +
                 "and post_id = ?;";
         return Optional.ofNullable(DataAccessUtils.singleResult(
