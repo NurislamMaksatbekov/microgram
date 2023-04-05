@@ -54,6 +54,7 @@ function checkPostLikedStatus(postId) {
     if (post) {
         post.likes = post.likes ? 0 : 1;
     }
+
 }
 
 
