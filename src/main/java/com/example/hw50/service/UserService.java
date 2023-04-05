@@ -5,7 +5,6 @@ import com.example.hw50.dto.UserDto;
 import com.example.hw50.entity.User;
 import com.example.hw50.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
