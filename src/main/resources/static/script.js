@@ -1,5 +1,3 @@
-// TASK1
-
 const user = {
     id: 1,
     naame: 'Nurislam',
@@ -10,9 +8,6 @@ const user = {
 
 };
 
-
-// TASK2
-
 const post = {
     id: 1,
     image: 'beautifulimage',
@@ -21,9 +16,6 @@ const post = {
     userId: 1, // я добавил в него userId. так и я связал его с пользователем
 
 };
-
-
-// TASK3
 
 const comment = {
     id: 1,
@@ -34,16 +26,12 @@ const comment = {
 };
 
 
-// TASK4
-
 const posts = [];
 
 function addPost(post){
     posts.push(post);
 }
 
-
-// TASK5
 
 function changeUserStatus(user) {
     user.checkUser = true;
