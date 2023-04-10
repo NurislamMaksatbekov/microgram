@@ -20,6 +20,7 @@ const post = {
 const comment = {
     id: 1,
     textOfComment: 'Cool bro',
+    timeOfComment: date(),
     userId: 1,
     postId: 1 // также я добавил id пользователя и поста чтобы саязять их
 
@@ -43,8 +44,19 @@ function changePostLikedStatus(postId) {
         post.likes = post.likes ? 0 : 1; // функция changePostLikedStatus ищет id поста в массиве posts и изменяет likes
         // если likes = 0 он меняет его значение на 1 или наоборотю
     }
-
 }
+
+
+function showSplashScreen(){
+    content.hidden = true;
+}
+
+function hideSplashScreen(){
+    content.hidden = false;
+}
+
+
+
 
 
 
