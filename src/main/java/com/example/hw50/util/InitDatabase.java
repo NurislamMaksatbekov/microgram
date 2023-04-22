@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -27,27 +26,27 @@ public class InitDatabase {
             commentDao.createTable();
 
             List<User> users = Stream.generate(User::random)
-                    .limit(30)
+                    .limit(7)
                     .collect(toList());
             userDao.saveAll(users);
 
             List<Post> posts = Stream.generate(Post::random)
-                    .limit(30)
+                    .limit(7)
                     .collect(toList());
             postDao.saveAll(posts);
 
             List<Subscription> subscriptions = Stream.generate(Subscription::random)
-                    .limit(30)
+                    .limit(7)
                     .collect(toList());
             subscriptionDao.saveAll(subscriptions);
 
             List<Like> likes = Stream.generate(Like::random)
-                    .limit(30)
+                    .limit(7)
                     .collect(toList());
             likeDao.saveAll(likes);
 
             List<Comment> comments = Stream.generate(Comment::random)
-                    .limit(30)
+                    .limit(7)
                     .collect(toList());
             commentDao.saveAll(comments);
 

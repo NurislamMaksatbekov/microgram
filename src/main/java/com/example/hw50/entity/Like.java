@@ -18,8 +18,8 @@ public class Like {
     private Integer timeOfLike;
 
     public static Like random(){
-        Integer rnd = new Random().nextInt(29) + 1;
-        Integer r = new Random().nextInt(29) + 1;
+        Integer rnd = new Random().nextInt(7) + 1;
+        Integer r = new Random().nextInt(7) + 1;
         Long userId = Long.valueOf(rnd);
         Long postId = Long.valueOf(r);
         return builder()

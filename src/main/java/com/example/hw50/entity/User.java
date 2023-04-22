@@ -35,11 +35,11 @@ import java.util.Random;
                 .username(Generator.makeName())
                 .email(Generator.makeEmail())
                 .password("qwerty0")
-                .publications(rnd.nextInt(9))
+                .publications(rnd.nextInt(5))
                 .enabled(true)
                 .roles("USER")
-                .followings(rnd.nextInt(29) + 1)
-                .followers(rnd.nextInt(29) +1)
+                .followings(rnd.nextInt(7) + 1)
+                .followers(rnd.nextInt(7) +1)
                 .build();
     }
 

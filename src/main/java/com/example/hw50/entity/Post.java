@@ -18,10 +18,10 @@ public class Post {
     private Long userId;
 
     public static Post random(){
-        Integer rnd = new Random().nextInt(29) + 1;
+        Integer rnd = new Random().nextInt(7) + 1;
         Long id = Long.valueOf(rnd);
         return builder()
-                .image(Generator.makeDescription())
+                .image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlros2f-2PIRzeI3-1FYsdqiyeRZHAy5MFfw&usqp=CAU")
                 .description(Generator.makeDescription())
                 .timeOfPublication(Generator.makeYear())
                 .userId(id)

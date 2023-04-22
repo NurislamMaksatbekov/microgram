@@ -17,8 +17,8 @@ public class Subscription {
     private Integer timeOfEvent;
 
     public static Subscription random(){
-        Integer rnd = new Random().nextInt(29) + 1;
-        Integer r = new Random().nextInt(29) + 1;
+        Integer rnd = new Random().nextInt(7) + 1;
+        Integer r = new Random().nextInt(7) + 1;
         Long followers_id = Long.valueOf(rnd);
         Long following_id = Long.valueOf(r);
 
