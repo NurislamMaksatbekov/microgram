@@ -11,14 +11,56 @@
 <body>
 <header class="header">
     <nav class="navbar navbar-light bg-dark">
-        <button id="button" type="button">LOGIN</button>
-        <button id="btn" type="button" class="post-btn"><i class="bi bi-arrow-up-square-fill"></i>
+        <button id="button" type="button">OPEN</button>
+        <button id="register-btn" type="button" class="btn-reg"><i class="bi bi-person-fill"></i>
+        </button>
+        <button id="btn" type="button" class="post-btn"><i class="bi bi-plus-square"></i>
         </button>
     </nav>
 </header>
+<div id="register-modal" class="reg-modal">
+    <div id="reg-modal-content" class="reg-modal-content">
+        <form id="register-form">
+            <div><label for="register">REGISTRATION:</label>
+            </div>
+            <div id="register" class="registration">
+                <div>
+                    <input type="text" class="form-control" id="inputName" placeholder="Name">
+                </div>
+                <div>
+                    <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                </div>
+                <div>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                </div>
+                <div>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+                <input type="hidden" id="usser-id" name="user-id" value="?">
+                <button type="submit">REGISTER</button>
+                </textarea>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="comment-modal" class="com-modal">
+    <div id="com-modal-content" class="comment-modal-content">
+        <form id="comment-form">
+            <div><label for="comment">Comment:</label>
+            </div>
+            <div id="comment" class="comments">
+                <textarea type="text" id="comment-value" name="post-image" placeholder="comment">
+                </textarea>
+                <input type="hidden" id="usr-id" name="user-id" value="?">
+                <input type="hidden" id="post-id" name="post-id" value="?">
+                <button type="submit">SEND</button>
+                </textarea>
+            </div>
+        </form>
+    </div>
+</div>
 <div id="my-modal" class="modal">
     <div class="modal-content">
-        <button class="close"><span>&times;</span></button>
         <form id="post-form">
             <div><label for="post-image">Image:</label>
             </div>
@@ -28,30 +70,7 @@
                 <input type="hidden" id="user-id" name="user-id" value="?">
                 <button type="submit">POST</button>
             </div>
-            <div>
-                <div class="comment-form-container" style="display:none;">
-                    <form id="comment-form">
-                        <input type="hidden" id="post-id" name="post-id">
-                        <input type="hidden" id="usr-id" name="user-id" value="123">
-                        <textarea id="comment-text" name="comment-text"></textarea>
-                        <button type="submit">Отправить</button>
-                    </form>
-                </div>
-            </div>
         </form>
-    </div>
-</div>
-<div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <p class="card-text">
-
-        </p>
-    </div>
-    </ul>
-    <div class="card-body">
-        <i></i>
-        <a href="#" class="card-link">Another link</a>
     </div>
 </div>
 <script src="script.js"></script>
