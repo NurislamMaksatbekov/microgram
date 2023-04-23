@@ -5,8 +5,8 @@ import com.example.hw50.dto.UserDto;
 import com.example.hw50.entity.User;
 import com.example.hw50.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService { // implements UserDetails
     private final UserDao userDao;
 
     public UserDto findByName(String name){
@@ -43,13 +43,25 @@ public class UserService implements UserDetailsService {
         return UserDto.from(user);
     }
 
+    public UserDto addUser(UserDto userData){
+        var user = User.builder()
+                .naame(userData.getNaame())
+                .username(userData.getUsername())
+                .email(userData.getUsername())
+                .password(userData.getPassword())
+                .build();
 
-    @Override
-    public User loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> user = userDao.findByEmail(email);
-        if (user.isEmpty()) {
-            throw new UsernameNotFoundException("User was not found");
-        }
-        return user.get();
+        userDao.save(user);
+        return UserDto.from(user);
     }
+
+
+//    @Override
+//    public User loadUserByUsername(String email) throws UsernameNotFoundException {
+//        Optional<User> user = userDao.findByEmail(email);
+//        if (user.isEmpty()) {
+//            throw new UsernameNotFoundException("User was not found");
+//        }
+//        return user.get();
+//    }
 }

@@ -20,7 +20,7 @@ public class PostDao {
     public void createTable(){
         jdbcTemplate.execute("create table if not exists post\n" +
                 "   (id bigserial primary key," +
-                "   image text," +
+                "   image text not null," +
                 "   description text," +
                 "   time_of_publication int," +
                 "   user_id bigint not null references usr(id));");

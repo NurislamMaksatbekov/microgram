@@ -12,13 +12,12 @@ public class UserDto {
         return builder()
                 .naame(user.getNaame())
                 .username(user.getUsername())
-                .followings(user.getFollowings())
-                .followers(user.getFollowers())
                 .build();
     }
 
+
     private String naame;
     private String username;
-    private int followings;
-    private int followers;
+    private String email;
+    private String password;
 }

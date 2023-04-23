@@ -1,6 +1,7 @@
 package com.example.hw50.controller;
 
 import com.example.hw50.dto.UserDto;
+import com.example.hw50.entity.User;
 import com.example.hw50.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,8 @@ public class UserController {
         return userService.ifUserExist(email);
     }
 
-//    @PostMapping("/register")
-//    public Optional<User> addNewUser(@RequestBody User user){
-//        return userService.addNewUser(user);
-//    }
+    @PostMapping("/register")
+    public UserDto addNewUser(@RequestBody UserDto user){
+        return userService.addUser(user);
+    }
 }

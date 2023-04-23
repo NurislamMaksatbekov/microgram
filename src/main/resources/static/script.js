@@ -21,7 +21,7 @@ const register = document.getElementById('register-btn');
 const registerModal = document.getElementById('register-modal');
 
 
-button.onclick = function (){
+button.onclick = function () {
     btn.style.display = "block"
     register.style.display = "block"
     button.style.display = "none";
@@ -29,7 +29,7 @@ button.onclick = function (){
     showPosts();
 }
 
-btn.onclick = function (){
+btn.onclick = function () {
     modal.style.display = "block";
 }
 
@@ -41,11 +41,11 @@ window.onclick = function (e) {
     }
 }
 
-comment.onclick = function (){
+comment.onclick = function () {
     commentModal.style.display = "block"
 }
 
-register.onclick = function (){
+register.onclick = function () {
     registerModal.style.display = "block";
 }
 
@@ -90,31 +90,30 @@ function showPosts() {
     return container;
 }
 
-like.addEventListener('click', ()=> {
-    if (post.like){
+like.addEventListener('click', () => {
+    if (post.like) {
         like.innerHTML = `<i class="bi bi-suit-heart"></i>`;
         post.like = false
-    }else {
+    } else {
         like.innerHTML = `<i class="bi bi-suit-heart-fill"></i>`;
         post.like = true;
     }
 })
 
-save.addEventListener('click', ()=>{
-    if(post.save){
+save.addEventListener('click', () => {
+    if (post.save) {
         save.innerHTML = `<i class="bi bi-bookmark"></i>`
         post.save = false;
-    }
-    else {
+    } else {
         save.innerHTML = `<i class="bi bi-bookmark-fill"></i>`;
         post.save = true;
 
     }
 });
 
-image.addEventListener('dblclick', ()=>{
+image.addEventListener('dblclick', () => {
     image.innerHTML = `<i class="bi bi-heart-fill"></i>`;
-    if(!post.like){
+    if (!post.like) {
         like.innerHTML = `<i class="bi bi-suit-heart-fill"></i>`;
         post.like = true;
     }

@@ -6,7 +6,7 @@ import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserDao {
     private final JdbcTemplate jdbcTemplate;
-    private final PasswordEncoder encoder;
+//    private final PasswordEncoder encoder;
 
 
     public void createTable() {
@@ -27,10 +27,10 @@ public class UserDao {
                 "   naame text not null," +
                 "   username text not null unique," +
                 "   email text not null unique," +
-                "   password text not null ," +
+                "   password text not null default 'qwerty0'," +
                 "   publication bigint default 0," +
                 "   enabled boolean default true," +
-                "   roles text not null," +
+                "   roles text not null default 'USER'," +
                 "   followers bigint default 0," +
                 "   followings bigint default 0);");
     }
@@ -44,7 +44,7 @@ public class UserDao {
                 ps.setString(1, users.get(i).getNaame());
                 ps.setString(2, users.get(i).getUsername());
                 ps.setString(3, users.get(i).getEmail());
-                ps.setString(4, encoder.encode(users.get(i).getPassword()));
+                ps.setString(4, users.get(i).getPassword());
                 ps.setInt(5, users.get(i).getPublications());
                 ps.setBoolean(6, users.get(i).isEnabled());
                 ps.setString(7, users.get(i).getRoles());
@@ -56,6 +56,24 @@ public class UserDao {
             public int getBatchSize() {
                 return users.size();
             }
+        });
+    }
+
+    public void save(User user) {
+        String sql = "insert into usr(naame, username, email, password) " +
+                "values(?,?,?,?)";
+        jdbcTemplate.update(con -> {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, user.getNaame());
+            ps.setString(2, user.getUsername());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPassword());
+//            ps.setInt(5, 0);
+//            ps.setBoolean(6, true);
+//            ps.setString(7, "USER");
+//            ps.setInt(8, 0);
+//            ps.setInt(9, 0);
+            return ps;
         });
     }
 
@@ -95,9 +113,4 @@ public class UserDao {
                 jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class), email)
         ));
     }
-
-//    public Optional<User> addNewUser(User user){
-//        String sql = "insert into usr" +
-//                ""
-//    }
 }
