@@ -49,49 +49,94 @@ register.onclick = function () {
     registerModal.style.display = "block";
 }
 
-    const registerBtn = document.getElementById('register-button')
+    // const registerBtn = document.getElementById('register-button')
+    //
+    // registerBtn.addEventListener("submit", registration);
+    //
+    //
+    // async function registration(userFormData, e) {
+    //     const name = document.getElementById('inputName')
+    //     const nameOfUser = name.value
+    //
+    //     const username = document.getElementById('inputUsername')
+    //     const usernameOfUser = username.value
+    //
+    //     const email = document.getElementById('inputEmail')
+    //     const emailOfUser = email.value
+    //
+    //
+    //     const password = document.getElementById('inputPassword')
+    //     const passwordOfUser = password.value
+    //
+    //         const form = e.target;
+    //
+    //         const data = new FormData(form)
+    //
+    //         const userJSON = JSON.stringify(Object.fromEntries(userFormData));
+    //
+    //         console.log(userJSON)
+    //
+    //         data.append('name', nameOfUser)
+    //         data.append('username', usernameOfUser)
+    //         data.append('email', emailOfUser)
+    //         data.append('password', passwordOfUser)
+    //
+    //         const headers = {
+    //             'Content-Type': 'application/json'
+    //         }
+    //         await fetch('http://localhost:9889/users/register', {
+    //             method: 'POST',
+    //             body: userJSON,
+    //             headers: headers
+    //         }).then(response =>{
+    //                 return response.json();
+    //             })
+    // }
 
-    registerBtn.addEventListener("submit", registration);
+const registerBtn = document.getElementById('register-button');
 
+registerBtn.addEventListener("click", registration);
 
-    async function registration(userFormData, e) {
-        const name = document.getElementById('inputName')
-        const nameOfUser = name.value
+async function registration(e) {
+    e.preventDefault();
 
-        const username = document.getElementById('inputUsername')
-        const usernameOfUser = username.value
+    const naame = document.getElementById('inputName');
+    const nameOfUser = naame.value;
 
-        const email = document.getElementById('inputEmail')
-        const emailOfUser = email.value
+    const username = document.getElementById('inputUsername');
+    const usernameOfUser = username.value;
 
+    const email = document.getElementById('inputEmail');
+    const emailOfUser = email.value;
 
-        const password = document.getElementById('inputPassword')
-        const passwordOfUser = password.value
+    const password = document.getElementById('inputPassword');
+    const passwordOfUser = password.value;
 
-            const form = e.target;
+    const data = {
+        naame: nameOfUser,
+        username: usernameOfUser,
+        email: emailOfUser,
+        password: passwordOfUser
+    };
 
-            const data = new FormData(form)
+    const userJSON = JSON.stringify(data);
 
-            const userJSON = JSON.stringify(Object.fromEntries(userFormData));
+    console.log(userJSON);
 
-            console.log(userJSON)
+    const headers = {
+        'Content-Type': 'application/json'
+    };
 
-            data.append('name', nameOfUser)
-            data.append('username', usernameOfUser)
-            data.append('email', emailOfUser)
-            data.append('password', passwordOfUser)
+    const response = await fetch('http://localhost:9889/users/register', {
+        method: 'POST',
+        body: userJSON,
+        headers: headers
+    });
 
-            const headers = {
-                'Content-Type': 'application/json'
-            }
-            await fetch('http://localhost:9889/users/register', {
-                method: 'POST',
-                body: userJSON,
-                headers: headers
-            }).then(response =>{
-                    return response.json();
-                })
-    }
+    const responseData = await response.json();
+    console.log(responseData);
+}
+
 
 
 function showPosts() {

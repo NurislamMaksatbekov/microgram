@@ -33,6 +33,7 @@ public class UserController {
         return userService.ifUserExist(email);
     }
 
+    @CrossOrigin(origins = "http://localhost:63342")
     @PostMapping("/register")
     public UserDto addNewUser(@RequestBody UserDto user){
         return userService.addUser(user);
