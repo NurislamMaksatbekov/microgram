@@ -6,7 +6,7 @@ import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserDao {
     private final JdbcTemplate jdbcTemplate;
-//    private final PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
 
     public void createTable() {
@@ -44,7 +44,7 @@ public class UserDao {
                 ps.setString(1, users.get(i).getNaame());
                 ps.setString(2, users.get(i).getUsername());
                 ps.setString(3, users.get(i).getEmail());
-                ps.setString(4, users.get(i).getPassword());
+                ps.setString(4, encoder.encode(users.get(i).getPassword()));
                 ps.setInt(5, users.get(i).getPublications());
                 ps.setBoolean(6, users.get(i).isEnabled());
                 ps.setString(7, users.get(i).getRoles());
@@ -67,12 +67,7 @@ public class UserDao {
             ps.setString(1, user.getNaame());
             ps.setString(2, user.getUsername());
             ps.setString(3, user.getEmail());
-            ps.setString(4, user.getPassword());
-//            ps.setInt(5, 0);
-//            ps.setBoolean(6, true);
-//            ps.setString(7, "USER");
-//            ps.setInt(8, 0);
-//            ps.setInt(9, 0);
+            ps.setString(4, encoder.encode(user.getPassword()));
             return ps;
         });
     }

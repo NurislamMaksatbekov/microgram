@@ -5,8 +5,8 @@ import com.example.hw50.dto.UserDto;
 import com.example.hw50.entity.User;
 import com.example.hw50.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
-//import org.springframework.security.core.userdetails.UserDetailsService;
-//import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserService { // implements UserDetails
+public class UserService implements UserDetailsService {
     private final UserDao userDao;
 
     public UserDto findByName(String name){
@@ -55,13 +55,13 @@ public class UserService { // implements UserDetails
         return UserDto.from(user);
     }
 
+    @Override
+    public User loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<User> user = userDao.findByEmail(email);
+        if (user.isEmpty()) {
+            throw new UsernameNotFoundException("User was not found");
+        }
+        return user.get();
+    }
 
-//    @Override
-//    public User loadUserByUsername(String email) throws UsernameNotFoundException {
-//        Optional<User> user = userDao.findByEmail(email);
-//        if (user.isEmpty()) {
-//            throw new UsernameNotFoundException("User was not found");
-//        }
-//        return user.get();
-//    }
 }
