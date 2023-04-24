@@ -60,4 +60,10 @@ public class PostDao {
                 "where following_id = ?);";
                 return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Post.class), id);
     }
+
+    public List<Post> showPosts(){
+        String sql = "select *" +
+                "from post";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Post.class));
+    }
 }

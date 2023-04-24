@@ -22,4 +22,9 @@ public class PostService {
         var postList = postDao.selectPostByFollowers(id);
         return postList.stream().map(PostDto::from).collect(Collectors.toList());
     }
+
+    public List<PostDto> showPosts(){
+        var postList = postDao.showPosts();
+        return postList.stream().map(PostDto::from).collect(Collectors.toList());
+    }
 }

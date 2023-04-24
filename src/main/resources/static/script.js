@@ -19,6 +19,10 @@ const button = document.getElementById('button');
 const commentModal = document.getElementById('comment-modal');
 const register = document.getElementById('register-btn');
 const registerModal = document.getElementById('register-modal');
+const name = document.getElementById('inputName')[0].value;
+const username = document.getElementById('inputUsername')[0].value;
+const email = document.getElementById('inputEmail')[0].value
+const password = document.getElementById('inputPassword')[0].value
 
 
 button.onclick = function () {
@@ -48,6 +52,26 @@ comment.onclick = function () {
 register.onclick = function () {
     registerModal.style.display = "block";
 }
+
+    async function registration(){
+        addEventListener("submit", (e) =>{
+            e.preventDefault();
+
+            const form = e.target;
+
+            const data = new FormData(form)
+
+            data.append('name', name)
+            data.append('username', username)
+            data.append('email', email)
+            data.append('password', password);
+
+        })
+    }
+
+
+
+
 
 function showPosts() {
     const container = document.createElement('div');
@@ -89,6 +113,8 @@ function showPosts() {
 
     return container;
 }
+
+
 
 like.addEventListener('click', () => {
     if (post.like) {

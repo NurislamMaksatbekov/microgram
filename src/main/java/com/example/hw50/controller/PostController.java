@@ -22,4 +22,9 @@ public class PostController {
     public List<PostDto> selectPostByFollowers(@RequestParam Long id) {
         return postService.selectPostByFollowers(id);
     }
+
+    @GetMapping("/showPosts")
+    List<PostDto> showPosts(){
+        return postService.showPosts();
+    }
 }
