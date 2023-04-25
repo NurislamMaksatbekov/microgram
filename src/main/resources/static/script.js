@@ -15,18 +15,16 @@ let post = {
     timeOfPost: new Date(),
     like: 0,
     isLiked: false,
-    commentIcon: '',
-    saveIcon: '',
     user: user
 }
 
-// let comment = {
-//     id: 1,
-//     textOfComment: '',
-//     timeOfComment: new Date(),
-//     user: user,
-//     post: post
-// }
+let comment = {
+    id: 1,
+    textOfComment: '',
+    timeOfComment: new Date(),
+    user: user,
+    post: post
+}
 
 const registerBtn = document.getElementById('register-button')
 registerBtn.addEventListener("click", registration)
@@ -67,52 +65,94 @@ async function registration(e) {
     console.log(responseData)
 }
 
-
-// let commentaries = document.createElement('p')
-
-
 const image = document.createElement('img')
-const likeIcon = document.createElement('i')
-const commentIcon = document.createElement('i')
-const saveIcon = document.createElement('i')
+
 const description = document.createElement('p')
 
 function makePosts(post) {
     const container = document.createElement('div')
     container.style.backgroundColor = "lightgray"
     container.style.width = "400px"
-    container.style.height = "550px"
+    container.style.height = "480px"
     container.style.marginLeft = "500px"
     container.style.marginBottom = "50px"
 
+    const postImage = document.createElement('img')
+    postImage.style.width = "100%"
+    postImage.src = post.image
+    container.appendChild(postImage)
 
-    image.style.width = "100%"
-    image.src = post.image
-    container.appendChild(image)
-
-    description.textContent = post.description
-    container.appendChild(description)
+    const descriptionBlock = document.createElement('div')
+    container.appendChild(descriptionBlock)
+    const postDescription = document.createElement('p')
+    postDescription.textContent = post.description
+    descriptionBlock.appendChild(postDescription)
 
     const actions = document.createElement('div')
     actions.style.height = "400px"
     actions.style.borderTop = "1px solid darkgray"
     container.appendChild(actions)
 
+    const likeIcon = document.createElement('i')
     likeIcon.innerHTML = `<i class="bi bi-suit-heart"></i>`
     likeIcon.style.marginLeft = "10px"
     actions.appendChild(likeIcon)
 
+    const commentIcon = document.createElement('i')
     commentIcon.innerHTML = '<i class="bi bi-chat"></i>'
     commentIcon.style.marginLeft = "10px"
     actions.appendChild(commentIcon)
 
+    const saveIcon = document.createElement('i')
     saveIcon.innerHTML = '<i class="bi bi-bookmark"></i>'
     saveIcon.style.marginLeft = "325px"
     actions.appendChild(saveIcon)
 
     document.body.appendChild(container)
 
+    likeIcon.addEventListener('click', () => {
+        if (post.like) {
+            likeIcon.innerHTML = `<i class="bi bi-suit-heart"></i>`
+            post.like = false
+        } else {
+            likeIcon.innerHTML = `<i class="bi bi-suit-heart-fill"></i>`
+            post.like = true
+        }
+    })
+
+    image.addEventListener('dblclick', () => {
+        image.innerHTML = `<i class="bi bi-heart-fill"></i>`
+        if (!post.like) {
+            likeIcon.innerHTML = `<i class="bi bi-suit-heart-fill"></i>`
+            post.like = true
+        }
+    })
+
+    saveIcon.addEventListener('click', () => {
+        if (post.save) {
+            saveIcon.innerHTML = `<i class="bi bi-bookmark"></i>`
+            post.save = false
+        } else {
+            saveIcon.innerHTML = `<i class="bi bi-bookmark-fill"></i>`
+            post.save = true
+
+        }
+    })
+
+    commentIcon.onclick = function () {
+        const postId = comment.post
+
+        commentModal.style.display = "block"
+    }
+    commentIcon.addEventListener('click', showCommentaries)
+
+    register.onclick = function () {
+        registerModal.style.display = "block"
+    }
+
     return container
+
+
 }
 
 async function showPosts(e) {
@@ -135,19 +175,29 @@ async function showPosts(e) {
     console.log(response)
 }
 
-// async function showCommentaries() {
-//     const comments = commentaries.value
-//      comment = {
-//         commentaries: comments
-//     }
-//     const userJSON = JSON.stringify(data)
-//     console.log(userJSON)
-//     const response = await sendRequest('GET', 'http://localhost:9889/comments/postComment')
-//     for (let i = 0; i < response.length; i++) {
-//         makeCommentaries(response[i])
-//     }
-//     console.log(response)
-// }
+const commentaries = document.createElement('p')
+function makeCommentaries(comment){
+    const container = document.createElement('div')
+    commentaries.textContent = comment.textOfComment
+    container.appendChild(commentaries)
+}
+
+async function showCommentaries() {
+    const comments = commentaries.value
+     comment = {
+        commentaries: comments
+    }
+    const userJSON = JSON.stringify(comments)
+    console.log(userJSON)
+    const response = await fetch( 'http://localhost:9889/comments/postComment')
+        .then(response => {
+            return response.json()
+        })
+    for (let i = 0; i < response.length; i++) {
+        makeCommentaries(response[i])
+    }
+    console.log(response)
+}
 
 const btn = document.getElementById('btn')
 const button = document.getElementById('button')
@@ -166,6 +216,7 @@ btn.onclick = function () {
     modal.style.display = "block"
 }
 
+const commentModal = document.getElementById('comment-modal')
 const registerModal = document.getElementById('register-modal')
 window.onclick = function (e) {
     if (e.target === modal || e.target === commentModal || e.target === registerModal) {
@@ -175,41 +226,11 @@ window.onclick = function (e) {
     }
 }
 
-const commentModal = document.getElementById('comment-modal')
-commentIcon.onclick = function () {
-    commentModal.style.display = "block"
-}
 
-register.onclick = function () {
-    registerModal.style.display = "block"
-}
 
-likeIcon.addEventListener('click', () => {
-    if (post.like) {
-        likeIcon.innerHTML = `<i class="bi bi-suit-heart"></i>`
-        post.like = false
-    } else {
-        likeIcon.innerHTML = `<i class="bi bi-suit-heart-fill"></i>`
-        post.like = true
-    }
-})
 
-saveIcon.addEventListener('click', () => {
-    if (post.save) {
-        saveIcon.innerHTML = `<i class="bi bi-bookmark"></i>`
-        post.save = false
-    } else {
-        saveIcon.innerHTML = `<i class="bi bi-bookmark-fill"></i>`
-        post.save = true
 
-    }
-})
 
-image.addEventListener('dblclick', () => {
-    image.innerHTML = `<i class="bi bi-heart-fill"></i>`
-    if (!post.like) {
-        likeIcon.innerHTML = `<i class="bi bi-suit-heart-fill"></i>`
-        post.like = true
-    }
-})
+
+
 

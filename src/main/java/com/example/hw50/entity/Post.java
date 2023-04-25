@@ -22,7 +22,7 @@ public class Post {
         Long id = Long.valueOf(rnd);
         return builder()
                 .image("https://toppeoples.ru/wp-content/uploads/2021/03/Le3mpmWeD0w.jpg")
-                .description(Generator.makeDescription())
+                .description("Блатной на связи)")
                 .timeOfPublication(Generator.makeYear())
                 .userId(id)
                 .build();
