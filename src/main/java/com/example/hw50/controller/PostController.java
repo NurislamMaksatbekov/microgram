@@ -23,8 +23,9 @@ public class PostController {
         return postService.selectPostByFollowers(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/showPosts")
-    List<PostDto> showPosts(){
+    public List<PostDto> showPosts(){
         return postService.showPosts();
     }
 }

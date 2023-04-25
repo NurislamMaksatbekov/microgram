@@ -21,7 +21,7 @@ public class Post {
         Integer rnd = new Random().nextInt(7) + 1;
         Long id = Long.valueOf(rnd);
         return builder()
-                .image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlros2f-2PIRzeI3-1FYsdqiyeRZHAy5MFfw&usqp=CAU")
+                .image("https://toppeoples.ru/wp-content/uploads/2021/03/Le3mpmWeD0w.jpg")
                 .description(Generator.makeDescription())
                 .timeOfPublication(Generator.makeYear())
                 .userId(id)
