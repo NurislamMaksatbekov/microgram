@@ -5,7 +5,6 @@ let user = {
     email: '',
     password: '',
     checkUser: false
-
 }
 
 let post = {
@@ -66,7 +65,6 @@ async function registration(e) {
 }
 
 const image = document.createElement('img')
-
 const description = document.createElement('p')
 
 function makePosts(post) {
@@ -138,21 +136,15 @@ function makePosts(post) {
 
         }
     })
-
     commentIcon.onclick = function () {
-        const postId = comment.post
-
         commentModal.style.display = "block"
     }
-    commentIcon.addEventListener('click', showCommentaries)
 
+    commentIcon.addEventListener('click', showCommentaries)
     register.onclick = function () {
         registerModal.style.display = "block"
     }
-
     return container
-
-
 }
 
 async function showPosts(e) {
@@ -175,28 +167,21 @@ async function showPosts(e) {
     console.log(response)
 }
 
-const commentaries = document.createElement('p')
-function makeCommentaries(comment){
-    const container = document.createElement('div')
-    commentaries.textContent = comment.textOfComment
-    container.appendChild(commentaries)
+async function getComments(postId) {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
+    const comments = await response.json();
+    return comments;
 }
 
-async function showCommentaries() {
-    const comments = commentaries.value
-     comment = {
-        commentaries: comments
-    }
-    const userJSON = JSON.stringify(comments)
-    console.log(userJSON)
-    const response = await fetch( 'http://localhost:9889/comments/postComment')
-        .then(response => {
-            return response.json()
-        })
-    for (let i = 0; i < response.length; i++) {
-        makeCommentaries(response[i])
-    }
-    console.log(response)
+async function showCommentaries(postId) {
+    const comments = await getComments(postId);
+    const commentsList = document.getElementById(`comments-${postId}`);
+    comments.forEach((comment) => {
+        const li = document.createElement('li');
+        li.classList.add('comment');
+        li.innerHTML = `<p><b>${comment.body}</b></p><p>${comment.body}</p>`;
+        commentsList.appendChild(li);
+    });
 }
 
 const btn = document.getElementById('btn')
@@ -225,12 +210,3 @@ window.onclick = function (e) {
         registerModal.style.display = "none"
     }
 }
-
-
-
-
-
-
-
-
-
