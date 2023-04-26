@@ -169,8 +169,7 @@ async function showPosts(e) {
 
 async function getComments(postId) {
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
-    const comments = await response.json();
-    return comments;
+    return await response.json();
 }
 
 async function showCommentaries(postId) {

@@ -13,7 +13,7 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
 
-    @GetMapping("/postComment")
+    @GetMapping("/{postId}/postComment")
     @CrossOrigin(origins = "http://localhost:63342")
     public List<CommentDto> showComments(@RequestParam Long postId){
         return commentService.showComments(postId);
