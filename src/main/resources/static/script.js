@@ -43,7 +43,7 @@ async function registration(e) {
     const password = document.getElementById('inputPassword')
     const passwordOfUser = password.value
 
-     user = {
+    user = {
         naame: nameOfUser,
         username: usernameOfUser,
         email: emailOfUser,
@@ -157,7 +157,7 @@ async function showPosts(e) {
     }
     const userJSON = JSON.stringify(post)
     console.log(userJSON)
-    const response = await fetch( 'http://localhost:9889/posts/showPosts')
+    const response = await fetch('http://localhost:9889/posts/showPosts')
         .then(response => {
             return response.json()
         })
@@ -185,12 +185,18 @@ async function showCommentaries(postId) {
 
 const btn = document.getElementById('btn')
 const button = document.getElementById('button')
+const loginBtn = document.getElementById('login-btn')
 
 const register = document.getElementById('register-btn')
 button.onclick = function () {
     btn.style.display = "block"
     register.style.display = "block"
     button.style.display = "none"
+    loginBtn.style.display = "block"
+}
+
+loginBtn.onclick = function () {
+    loginModal.style.display = "block"
 }
 
 button.addEventListener('click', showPosts)
@@ -199,13 +205,14 @@ const modal = document.getElementById('my-modal')
 btn.onclick = function () {
     modal.style.display = "block"
 }
-
+const loginModal = document.getElementById('login-modal')
 const commentModal = document.getElementById('comment-modal')
 const registerModal = document.getElementById('register-modal')
 window.onclick = function (e) {
-    if (e.target === modal || e.target === commentModal || e.target === registerModal) {
+    if (e.target === modal || e.target === commentModal || e.target === registerModal || e.target === loginModal) {
         modal.style.display = "none"
         commentModal.style.display = "none"
         registerModal.style.display = "none"
+        loginModal.style.display = "none"
     }
 }
