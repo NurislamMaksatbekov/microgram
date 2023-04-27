@@ -27,6 +27,7 @@ let comment = {
 
 const registerBtn = document.getElementById('register-button')
 registerBtn.addEventListener("click", registration)
+registerBtn.addEventListener('click', showPosts)
 
 async function registration(e) {
     e.preventDefault()
@@ -69,7 +70,10 @@ const description = document.createElement('p')
 
 function makePosts(post) {
     const container = document.createElement('div')
-    container.style.backgroundColor = "lightgray"
+    if (logout.addEventListener('click', () => {
+        container.remove()
+    }))
+        container.style.backgroundColor = "lightgray"
     container.style.width = "400px"
     container.style.height = "480px"
     container.style.marginLeft = "500px"
@@ -79,7 +83,6 @@ function makePosts(post) {
     postImage.style.width = "100%"
     postImage.src = post.image
     container.appendChild(postImage)
-
     const descriptionBlock = document.createElement('div')
     container.appendChild(descriptionBlock)
     const postDescription = document.createElement('p')
@@ -145,19 +148,11 @@ function makePosts(post) {
 
     return container
 }
+
 const register = document.getElementById('register-btn')
 register.onclick = function () {
     registerModal.style.display = "block"
 }
-
-const logout = document.getElementById('logout-btn')
-
-logout.addEventListener('click', logoutUser)
-
-function logoutUser() {
-    localStorage.clear()
-}
-
 
 
 async function showPosts(e) {
@@ -182,6 +177,7 @@ async function showPosts(e) {
     loginModal.style.display = "none"
     register.style.display = "none"
     loginBtn.style.display = "none"
+    registerModal.style.display = "none"
     console.log(response)
 }
 
@@ -225,21 +221,63 @@ window.onclick = function (e) {
     }
 }
 
-const form = document.getElementById('login-form')
-const formFields = form.elements
 
 const authBtn = document.getElementById('login-button')
-authBtn.onclick =  function (){
-    for (let i = 0; i < formFields.length; i++){
-        formFields[i].addEventListener('click', saveUser())
-    }
-}
 authBtn.addEventListener("click", showPosts)
+authBtn.addEventListener('click', saveUser)
 
 
+const loginForm = document.getElementById('login-form');
 
-function saveUser() {
-    localStorage.setItem(this.name, this.value)
+function saveUser(user) {
+    localStorage.setItem('user', JSON.stringify(user));
 }
+
+function getUser() {
+    return JSON.parse(localStorage.getItem('user'));
+}
+
+function fetchAuthorized(url, options = {}) {
+    const headers = {
+        'Content-Type': 'application/json',
+    };
+    const user = getUser();
+    if (user) {
+        headers.Authorization = 'Basic ' + btoa(`${user.username}:${user.password}`);
+    }
+    options.headers = headers;
+    options.mode = 'cors';
+    return fetch(url, options);
+}
+
+function onLoginHandler(e) {
+    e.preventDefault();
+    const userFormData = new FormData(loginForm);
+    const user = Object.fromEntries(userFormData);
+    saveUser(user);
+    fetchAuthorized(BASE_URL + 'posts');
+}
+
+loginForm.addEventListener('submit', onLoginHandler);
+
+
+const logout = document.getElementById('logout-btn')
+
+logout.addEventListener('click', logoutUser)
+
+function logoutUser() {
+    btn.style.display = "none"
+    logout.style.display = "none"
+    register.style.display = "block"
+    loginBtn.style.display = "block"
+    return localStorage.removeItem('user')
+}
+if(getUser() !== null){
+    showPosts()
+}else {
+    loginModal.style.display = "block"
+}
+
+
 
 
