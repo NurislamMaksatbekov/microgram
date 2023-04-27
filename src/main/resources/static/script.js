@@ -64,6 +64,20 @@ async function registration(e) {
     console.log(responseData)
 }
 
+const loginForm = document.getElementById('login-form')
+loginForm.addEventListener('submit', loginHandler)
+
+const authBtn = document.getElementById('login-button')
+authBtn.addEventListener('click', showPosts)
+
+function loginHandler(e){
+    e.preventDefault()
+    const form = e.target()
+    const formData = new FormData(form)
+    const user = Object.fromEntries(formData);
+}
+
+
 const image = document.createElement('img')
 const description = document.createElement('p')
 
@@ -141,11 +155,16 @@ function makePosts(post) {
     }
 
     commentIcon.addEventListener('click', showCommentaries)
-    register.onclick = function () {
-        registerModal.style.display = "block"
-    }
+
+
     return container
 }
+const register = document.getElementById('register-btn')
+register.onclick = function () {
+    registerModal.style.display = "block"
+}
+
+const logout = document.getElementById('logout-btn')
 
 async function showPosts(e) {
     e.preventDefault()
@@ -164,6 +183,11 @@ async function showPosts(e) {
     for (let i = 0; i < response.length; i++) {
         makePosts(response[i])
     }
+    btn.style.display = "block"
+    logout.style.display = "block"
+    loginModal.style.display = "none"
+    register.style.display = "none"
+    loginBtn.style.display = "none"
     console.log(response)
 }
 
@@ -184,22 +208,13 @@ async function showCommentaries(postId) {
 }
 
 const btn = document.getElementById('btn')
-const button = document.getElementById('button')
 const loginBtn = document.getElementById('login-btn')
 
-const register = document.getElementById('register-btn')
-button.onclick = function () {
-    btn.style.display = "block"
-    register.style.display = "block"
-    button.style.display = "none"
-    loginBtn.style.display = "block"
-}
 
 loginBtn.onclick = function () {
     loginModal.style.display = "block"
 }
 
-button.addEventListener('click', showPosts)
 
 const modal = document.getElementById('my-modal')
 btn.onclick = function () {

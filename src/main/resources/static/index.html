@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Lesson 57. Javascript 101</title>
@@ -11,18 +11,20 @@
 <body>
 <header class="header">
     <nav class="navbar navbar-light bg-dark">
-        <button id="button" type="button">OPEN</button>
         <button id="register-btn" type="button" class="btn-reg">REGISTER
         </button>
         <button id="btn" type="button" class="post-btn"><i class="bi bi-plus-square"></i>
         </button>
         <button id="login-btn" type="button" class="login-btn">LOGIN
         </button>
+        <button id="logout-btn" type="button" class="logout-btn">
+            LOGOUT
+        </button>
     </nav>
 </header>
 <div id="login-modal" class="login-box">
     <h2>Login</h2>
-    <form>
+    <form id="login-form">
         <div class="user-box">
             <input type="text" name="" required="">
             <label>Username</label>
@@ -31,13 +33,9 @@
             <input type="password" name="" required="">
             <label>Password</label>
         </div>
-        <a href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+        <button id="login-button" type="button">
             Submit
-        </a>
+        </button>
     </form>
 </div>
 <div id="register-modal" class="reg-modal">

@@ -13,7 +13,7 @@
 }
 
 .modal-content,
-.comment-modal-content
+.comment-modal-content,
 .reg-modal-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -24,8 +24,7 @@
 
 
 .post-btn,
-.btn-reg,
-.login-btn {
+.logout-btn{
     display: none;
 }
 
