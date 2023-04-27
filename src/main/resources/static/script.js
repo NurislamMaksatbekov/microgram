@@ -64,20 +64,6 @@ async function registration(e) {
     console.log(responseData)
 }
 
-const loginForm = document.getElementById('login-form')
-loginForm.addEventListener('submit', loginHandler)
-
-const authBtn = document.getElementById('login-button')
-authBtn.addEventListener('click', showPosts)
-
-function loginHandler(e){
-    e.preventDefault()
-    const form = e.target()
-    const formData = new FormData(form)
-    const user = Object.fromEntries(formData);
-}
-
-
 const image = document.createElement('img')
 const description = document.createElement('p')
 
@@ -166,6 +152,14 @@ register.onclick = function () {
 
 const logout = document.getElementById('logout-btn')
 
+logout.addEventListener('click', logoutUser)
+
+function logoutUser() {
+    localStorage.clear()
+}
+
+
+
 async function showPosts(e) {
     e.preventDefault()
     const images = image.value
@@ -215,7 +209,6 @@ loginBtn.onclick = function () {
     loginModal.style.display = "block"
 }
 
-
 const modal = document.getElementById('my-modal')
 btn.onclick = function () {
     modal.style.display = "block"
@@ -231,3 +224,22 @@ window.onclick = function (e) {
         loginModal.style.display = "none"
     }
 }
+
+const form = document.getElementById('login-form')
+const formFields = form.elements
+
+const authBtn = document.getElementById('login-button')
+authBtn.onclick =  function (){
+    for (let i = 0; i < formFields.length; i++){
+        formFields[i].addEventListener('click', saveUser())
+    }
+}
+authBtn.addEventListener("click", showPosts)
+
+
+
+function saveUser() {
+    localStorage.setItem(this.name, this.value)
+}
+
+
